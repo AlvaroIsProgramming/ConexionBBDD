@@ -11,6 +11,8 @@ package conexionbbdd;
  */
 public class Ventana extends javax.swing.JFrame {
 
+    PoolConexiones manager = new PoolConexiones();
+
     /**
      * Creates new form Ventana
      */
@@ -72,19 +74,20 @@ public class Ventana extends javax.swing.JFrame {
 
     private void jButtonConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConectarActionPerformed
         // TODO add your handling code here:
-        GestorBBDD gestor = new GestorBBDD();
+        manager.conection();
+
     }//GEN-LAST:event_jButtonConectarActionPerformed
 
     private void jButtonDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDesconectarActionPerformed
         // TODO add your handling code here:
-        GestorBBDD gestor = new GestorBBDD();
-        int retorno = gestor.cerrarConexion();
 
+        manager.cerrarConexion();
+        /*
         if (retorno == 0) {
             System.out.println("Desconectado de la BBDD");
         } else {
             System.out.println("Error en la desconexionF");
-        }
+        }*/
     }//GEN-LAST:event_jButtonDesconectarActionPerformed
 
     /**

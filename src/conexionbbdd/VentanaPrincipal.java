@@ -16,16 +16,15 @@ public class VentanaPrincipal {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        GestorBBDD gestor = new GestorBBDD();
-        
-        
-       int retorno = gestor.cerrarConexion();
-       
+        PoolConexiones gestor = new PoolConexiones();
+
+        gestor.cerrarConexion();
+        /*
        if(retorno == 0){
            System.out.println("Desconectado de la BBDD");
        }else{
            System.out.println("Error en la desconexionF");
-       }
+       }*/
     }
-    
+
 }
