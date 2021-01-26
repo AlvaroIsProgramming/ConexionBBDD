@@ -72,6 +72,7 @@ public class PoolConexiones {
         Statement sta;
         try {
             sta = conexion.createStatement();
+            //executeUpdate para todo lo que no te devuelva info de la BBDD
             sta.executeUpdate("ALTER TABLE grupo ADD anno_creacion YEAR;");
             sta.close();
         } catch (SQLException ex) {
@@ -110,8 +111,8 @@ public class PoolConexiones {
             System.out.println("Tabla creada correctamente.");
         }
     }
-    
-     public void insertarCancion() {
+
+    public void insertarCancion() {
         Statement sta;
         try {
             sta = conexion.createStatement();

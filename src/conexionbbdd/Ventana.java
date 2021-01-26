@@ -10,7 +10,7 @@ package conexionbbdd;
  * @author aghsk
  */
 public class Ventana extends javax.swing.JFrame {
-    
+
     PoolConexiones manager = new PoolConexiones();
 
     /**

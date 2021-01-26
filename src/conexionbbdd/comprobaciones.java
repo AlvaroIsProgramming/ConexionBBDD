@@ -9,7 +9,7 @@ package conexionbbdd;
  *
  * @author aghsk
  */
-public class VentanaPrincipal {
+public class comprobaciones {
 
     /**
      * @param args the command line arguments
