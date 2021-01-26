@@ -10,7 +10,7 @@ package conexionbbdd;
  * @author aghsk
  */
 public class Ventana extends javax.swing.JFrame {
-
+    
     PoolConexiones manager = new PoolConexiones();
 
     /**
@@ -31,6 +31,9 @@ public class Ventana extends javax.swing.JFrame {
 
         jButtonConectar = new javax.swing.JButton();
         jButtonDesconectar = new javax.swing.JButton();
+        jButtonBorrarTablaGrupo = new javax.swing.JButton();
+        jButtonCrearTablaGrupo = new javax.swing.JButton();
+        jButtonAddColumnaTablaGrupo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,9 +45,34 @@ public class Ventana extends javax.swing.JFrame {
         });
 
         jButtonDesconectar.setText("Desconectar");
+        jButtonDesconectar.setEnabled(false);
         jButtonDesconectar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonDesconectarActionPerformed(evt);
+            }
+        });
+
+        jButtonBorrarTablaGrupo.setText("Borrar Tabla Grupo");
+        jButtonBorrarTablaGrupo.setEnabled(false);
+        jButtonBorrarTablaGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarTablaGrupoActionPerformed(evt);
+            }
+        });
+
+        jButtonCrearTablaGrupo.setText("Crear Tabla Grupo");
+        jButtonCrearTablaGrupo.setEnabled(false);
+        jButtonCrearTablaGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCrearTablaGrupoActionPerformed(evt);
+            }
+        });
+
+        jButtonAddColumnaTablaGrupo.setText("Añadir Año a Grupo");
+        jButtonAddColumnaTablaGrupo.setEnabled(false);
+        jButtonAddColumnaTablaGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddColumnaTablaGrupoActionPerformed(evt);
             }
         });
 
@@ -58,6 +86,16 @@ public class Ventana extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
                 .addComponent(jButtonDesconectar)
                 .addGap(101, 101, 101))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(jButtonBorrarTablaGrupo)
+                .addGap(33, 33, 33)
+                .addComponent(jButtonCrearTablaGrupo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonAddColumnaTablaGrupo)
+                .addGap(132, 132, 132))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -66,7 +104,13 @@ public class Ventana extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonConectar)
                     .addComponent(jButtonDesconectar))
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addGap(36, 36, 36)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBorrarTablaGrupo)
+                    .addComponent(jButtonCrearTablaGrupo))
+                .addGap(28, 28, 28)
+                .addComponent(jButtonAddColumnaTablaGrupo)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         pack();
@@ -75,6 +119,11 @@ public class Ventana extends javax.swing.JFrame {
     private void jButtonConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConectarActionPerformed
         // TODO add your handling code here:
         manager.conection();
+        jButtonConectar.setEnabled(false);
+        jButtonDesconectar.setEnabled(true);
+        jButtonBorrarTablaGrupo.setEnabled(true);
+        jButtonAddColumnaTablaGrupo.setEnabled(true);
+        jButtonDesconectar.setEnabled(true);
 
     }//GEN-LAST:event_jButtonConectarActionPerformed
 
@@ -82,6 +131,8 @@ public class Ventana extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         manager.cerrarConexion();
+        jButtonConectar.setEnabled(true);
+        jButtonDesconectar.setEnabled(false);
         /*
         if (retorno == 0) {
             System.out.println("Desconectado de la BBDD");
@@ -89,6 +140,26 @@ public class Ventana extends javax.swing.JFrame {
             System.out.println("Error en la desconexionF");
         }*/
     }//GEN-LAST:event_jButtonDesconectarActionPerformed
+
+    private void jButtonBorrarTablaGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTablaGrupoActionPerformed
+        // TODO add your handling code here:
+        manager.borrarTablaGrupo();
+        jButtonCrearTablaGrupo.setEnabled(true);
+        jButtonAddColumnaTablaGrupo.setEnabled(false);
+    }//GEN-LAST:event_jButtonBorrarTablaGrupoActionPerformed
+
+    private void jButtonCrearTablaGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearTablaGrupoActionPerformed
+        // TODO add your handling code here:
+        manager.crearTablaGrupo();
+        jButtonAddColumnaTablaGrupo.setEnabled(true);
+        jButtonCrearTablaGrupo.setEnabled(false);
+    }//GEN-LAST:event_jButtonCrearTablaGrupoActionPerformed
+
+    private void jButtonAddColumnaTablaGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddColumnaTablaGrupoActionPerformed
+        // TODO add your handling code here:
+        manager.addColumna();
+        jButtonAddColumnaTablaGrupo.setEnabled(false);
+    }//GEN-LAST:event_jButtonAddColumnaTablaGrupoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,7 +197,10 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonAddColumnaTablaGrupo;
+    private javax.swing.JButton jButtonBorrarTablaGrupo;
     private javax.swing.JButton jButtonConectar;
+    private javax.swing.JButton jButtonCrearTablaGrupo;
     private javax.swing.JButton jButtonDesconectar;
     // End of variables declaration//GEN-END:variables
 }

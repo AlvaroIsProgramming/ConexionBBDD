@@ -8,6 +8,9 @@ package conexionbbdd;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 /**
@@ -35,6 +38,7 @@ public class PoolConexiones {
             System.err.println("Error");
         }
     }
+
     //Metodo para conectarte a la BBDD
     public void conection() {
         try {
@@ -51,6 +55,7 @@ public class PoolConexiones {
             System.out.println("Error en la conexion");
         }
     }
+
     //Metodo para desconectarte de la BBDD
     public void cerrarConexion() {
         try {
@@ -60,6 +65,49 @@ public class PoolConexiones {
         } catch (SQLException ex) {
             System.out.println("Error en la desconexión");
             // return -1;
+        }
+    }
+
+    public void addColumna() {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("ALTER TABLE grupo ADD anno_creacion YEAR;");
+            sta.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Columna creada correctamente.");
+        }
+
+    }
+
+    public void borrarTablaGrupo() {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("DROP table grupo;");
+            sta.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Tabla borrada correctamente.");
+        }
+    }
+
+    public void crearTablaGrupo() {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("CREATE TABLE GRUPO(\n"
+                    + "    id INT NOT NULL,\n"
+                    + "    Nombre_Grupo varchar(30) DEFAULT NULL,\n"
+                    + "    Discografica varchar(30) DEFAULT NULL,\n"
+                    + "    Lider varchar(30) DEFAULT NULL,\n"
+                    + "    PRIMARY KEY (id)\n"
+                    + ");");
+            sta.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Tabla creada correctamente.");
         }
     }
 }
