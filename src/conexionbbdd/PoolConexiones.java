@@ -110,4 +110,16 @@ public class PoolConexiones {
             System.out.println("Tabla creada correctamente.");
         }
     }
+    
+     public void insertarCancion() {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("INSERT INTO cancion VALUE(1, 'Brittle Bones Nicky', '3:17', '2018/01/01');");
+            sta.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Cancion insertada correctamente.");
+        }
+    }
 }

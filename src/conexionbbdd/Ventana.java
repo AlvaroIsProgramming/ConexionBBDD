@@ -34,6 +34,7 @@ public class Ventana extends javax.swing.JFrame {
         jButtonBorrarTablaGrupo = new javax.swing.JButton();
         jButtonCrearTablaGrupo = new javax.swing.JButton();
         jButtonAddColumnaTablaGrupo = new javax.swing.JButton();
+        jButtonInsertarCancion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +77,14 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
+        jButtonInsertarCancion.setText("Insertar Cancion");
+        jButtonInsertarCancion.setEnabled(false);
+        jButtonInsertarCancion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertarCancionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,7 +104,9 @@ public class Ventana extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonAddColumnaTablaGrupo)
-                .addGap(132, 132, 132))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonInsertarCancion)
+                .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -109,7 +120,9 @@ public class Ventana extends javax.swing.JFrame {
                     .addComponent(jButtonBorrarTablaGrupo)
                     .addComponent(jButtonCrearTablaGrupo))
                 .addGap(28, 28, 28)
-                .addComponent(jButtonAddColumnaTablaGrupo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAddColumnaTablaGrupo)
+                    .addComponent(jButtonInsertarCancion))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
 
@@ -124,6 +137,7 @@ public class Ventana extends javax.swing.JFrame {
         jButtonBorrarTablaGrupo.setEnabled(true);
         jButtonAddColumnaTablaGrupo.setEnabled(true);
         jButtonDesconectar.setEnabled(true);
+        jButtonInsertarCancion.setEnabled(true);
 
     }//GEN-LAST:event_jButtonConectarActionPerformed
 
@@ -160,6 +174,11 @@ public class Ventana extends javax.swing.JFrame {
         manager.addColumna();
         jButtonAddColumnaTablaGrupo.setEnabled(false);
     }//GEN-LAST:event_jButtonAddColumnaTablaGrupoActionPerformed
+
+    private void jButtonInsertarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarCancionActionPerformed
+        // TODO add your handling code here:
+        manager.insertarCancion();
+    }//GEN-LAST:event_jButtonInsertarCancionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -202,5 +221,6 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton jButtonConectar;
     private javax.swing.JButton jButtonCrearTablaGrupo;
     private javax.swing.JButton jButtonDesconectar;
+    private javax.swing.JButton jButtonInsertarCancion;
     // End of variables declaration//GEN-END:variables
 }
