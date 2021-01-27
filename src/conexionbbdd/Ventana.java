@@ -35,8 +35,20 @@ public class Ventana extends javax.swing.JFrame {
         jButtonCrearTablaGrupo = new javax.swing.JButton();
         jButtonAddColumnaTablaGrupo = new javax.swing.JButton();
         jButtonInsertarCancion = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jTextFieldIdCancion = new javax.swing.JTextField();
+        jTextFieldNombreCancion = new javax.swing.JTextField();
+        jTextFieldDuracion = new javax.swing.JTextField();
+        jTextFieldFechaLanzamieto = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabelInfo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 153, 153));
 
         jButtonConectar.setText("Conectar");
         jButtonConectar.addActionListener(new java.awt.event.ActionListener() {
@@ -85,45 +97,99 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Nombre:");
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Id:");
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Duracion:");
+
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Release:");
+
+        jLabelInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelInfo.setText("Sin conexión a la BBDD Discográfica.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jButtonConectar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
-                .addComponent(jButtonDesconectar)
-                .addGap(101, 101, 101))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(jButtonBorrarTablaGrupo)
-                .addGap(33, 33, 33)
-                .addComponent(jButtonCrearTablaGrupo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonAddColumnaTablaGrupo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonInsertarCancion)
-                .addGap(49, 49, 49))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonConectar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonDesconectar)
+                        .addGap(0, 213, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonAddColumnaTablaGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonCrearTablaGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonBorrarTablaGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonInsertarCancion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldIdCancion)
+                            .addComponent(jTextFieldNombreCancion)
+                            .addComponent(jTextFieldDuracion, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldFechaLanzamieto))))
+                .addGap(18, 18, 18))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(116, 116, 116)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonConectar)
-                    .addComponent(jButtonDesconectar))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonBorrarTablaGrupo)
-                    .addComponent(jButtonCrearTablaGrupo))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAddColumnaTablaGrupo)
-                    .addComponent(jButtonInsertarCancion))
-                .addContainerGap(51, Short.MAX_VALUE))
+                    .addComponent(jButtonDesconectar)
+                    .addComponent(jButtonBorrarTablaGrupo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonCrearTablaGrupo)
+                    .addComponent(jLabelInfo))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButtonAddColumnaTablaGrupo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
+                        .addComponent(jButtonInsertarCancion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldIdCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldNombreCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldFechaLanzamieto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
 
         pack();
@@ -138,6 +204,7 @@ public class Ventana extends javax.swing.JFrame {
         jButtonAddColumnaTablaGrupo.setEnabled(true);
         jButtonDesconectar.setEnabled(true);
         jButtonInsertarCancion.setEnabled(true);
+        jLabelInfo.setText("Conectado con exito a Discográfica!");
 
     }//GEN-LAST:event_jButtonConectarActionPerformed
 
@@ -153,6 +220,7 @@ public class Ventana extends javax.swing.JFrame {
         } else {
             System.out.println("Error en la desconexionF");
         }*/
+        jLabelInfo.setText("Desconectado con exito de Discográfica!");
     }//GEN-LAST:event_jButtonDesconectarActionPerformed
 
     private void jButtonBorrarTablaGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTablaGrupoActionPerformed
@@ -160,6 +228,7 @@ public class Ventana extends javax.swing.JFrame {
         manager.borrarTablaGrupo();
         jButtonCrearTablaGrupo.setEnabled(true);
         jButtonAddColumnaTablaGrupo.setEnabled(false);
+        jLabelInfo.setText("La Tabla grupo a sido borrada correctamente");
     }//GEN-LAST:event_jButtonBorrarTablaGrupoActionPerformed
 
     private void jButtonCrearTablaGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearTablaGrupoActionPerformed
@@ -167,17 +236,20 @@ public class Ventana extends javax.swing.JFrame {
         manager.crearTablaGrupo();
         jButtonAddColumnaTablaGrupo.setEnabled(true);
         jButtonCrearTablaGrupo.setEnabled(false);
+        jLabelInfo.setText("La Tabla grupo a sido creada correctamente");
     }//GEN-LAST:event_jButtonCrearTablaGrupoActionPerformed
 
     private void jButtonAddColumnaTablaGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddColumnaTablaGrupoActionPerformed
         // TODO add your handling code here:
         manager.addColumna();
         jButtonAddColumnaTablaGrupo.setEnabled(false);
+        jLabelInfo.setText("Atributo anno_creacion añadido a la Tabla Grupo");
     }//GEN-LAST:event_jButtonAddColumnaTablaGrupoActionPerformed
 
     private void jButtonInsertarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarCancionActionPerformed
         // TODO add your handling code here:
-        manager.insertarCancion();
+        manager.insertarCancion(jTextFieldIdCancion.getText(), jTextFieldNombreCancion.getText(), jTextFieldDuracion.getText(), jTextFieldFechaLanzamieto.getText());
+        jLabelInfo.setText("Cancion insertada correctamente");
     }//GEN-LAST:event_jButtonInsertarCancionActionPerformed
 
     /**
@@ -222,5 +294,16 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JButton jButtonCrearTablaGrupo;
     private javax.swing.JButton jButtonDesconectar;
     private javax.swing.JButton jButtonInsertarCancion;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabelInfo;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextFieldDuracion;
+    private javax.swing.JTextField jTextFieldFechaLanzamieto;
+    private javax.swing.JTextField jTextFieldIdCancion;
+    private javax.swing.JTextField jTextFieldNombreCancion;
     // End of variables declaration//GEN-END:variables
 }

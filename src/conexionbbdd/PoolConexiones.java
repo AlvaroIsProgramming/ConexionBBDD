@@ -112,11 +112,11 @@ public class PoolConexiones {
         }
     }
 
-    public void insertarCancion() {
+    public void insertarCancion(String id, String nombre, String duracion, String fecha_release) {
         Statement sta;
         try {
             sta = conexion.createStatement();
-            sta.executeUpdate("INSERT INTO cancion VALUE(1, 'Brittle Bones Nicky', '3:17', '2018/01/01');");
+            sta.executeUpdate("INSERT INTO cancion VALUE('" + id + "', '" + nombre + "', '" + duracion + "', '" + fecha_release + "');");
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
