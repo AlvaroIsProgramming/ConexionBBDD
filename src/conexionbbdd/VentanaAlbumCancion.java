@@ -18,6 +18,7 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
      */
     public VentanaAlbumCancion() {
         initComponents();
+        conectarseADiscográfica();
     }
 
     /**
@@ -31,41 +32,40 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
         Album = new javax.swing.JPanel();
-        jTextFieldNombreCancion = new javax.swing.JTextField();
-        jTextFieldDuracion = new javax.swing.JTextField();
-        jTextFieldFechaLanzamieto = new javax.swing.JTextField();
+        jTextFieldNombreAlbum = new javax.swing.JTextField();
+        jTextFieldDiscografica = new javax.swing.JTextField();
+        jTextFieldLider = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabelInfo = new javax.swing.JLabel();
-        jButtonConectar = new javax.swing.JButton();
         jButtonDesconectar = new javax.swing.JButton();
-        jButtonBorrarTablaGrupo = new javax.swing.JButton();
-        jButtonCrearTablaGrupo = new javax.swing.JButton();
-        jButtonAddColumnaTablaGrupo = new javax.swing.JButton();
-        jButtonInsertarCancion = new javax.swing.JButton();
+        jButtonBorrarTablaAlbum = new javax.swing.JButton();
+        jButtonCrearTablaAlbum = new javax.swing.JButton();
+        jButtonAddColumnaTablaAlbum = new javax.swing.JButton();
+        jButtonInsertarAlbum = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
-        jTextFieldIdCancion = new javax.swing.JTextField();
+        jTextFieldIdAlbum = new javax.swing.JTextField();
         Cancion = new javax.swing.JPanel();
-        jButtonDesconectar1 = new javax.swing.JButton();
-        jButtonBorrarTablaGrupo1 = new javax.swing.JButton();
-        jButtonCrearTablaGrupo1 = new javax.swing.JButton();
-        jButtonAddColumnaTablaGrupo1 = new javax.swing.JButton();
-        jButtonInsertarCancion1 = new javax.swing.JButton();
+        jButtonBorrarTablaCancion = new javax.swing.JButton();
+        jButtonCrearTablaCancion = new javax.swing.JButton();
+        jButtonAddColumnaTablaCancion = new javax.swing.JButton();
+        jButtonInsertarCancion = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
-        jTextFieldIdCancion1 = new javax.swing.JTextField();
-        jTextFieldNombreCancion1 = new javax.swing.JTextField();
-        jTextFieldDuracion1 = new javax.swing.JTextField();
-        jButtonConectar5 = new javax.swing.JButton();
-        jTextFieldFechaLanzamieto1 = new javax.swing.JTextField();
+        jTextFieldIdCancion = new javax.swing.JTextField();
+        jTextFieldNombreCancion = new javax.swing.JTextField();
+        jTextFieldDuracion = new javax.swing.JTextField();
+        jTextFieldFechaLanzamieto = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabelInfo1 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTextFieldAlbumCancion = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,20 +76,13 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         jLabel2.setText("Id:");
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Duracion:");
+        jLabel3.setText("Discografica:");
 
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Release:");
+        jLabel4.setText("Lider:");
 
         jLabelInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelInfo.setText("Sin conexión a la BBDD Discográfica.");
-
-        jButtonConectar.setText("Conectar");
-        jButtonConectar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConectarActionPerformed(evt);
-            }
-        });
 
         jButtonDesconectar.setText("Desconectar");
         jButtonDesconectar.setEnabled(false);
@@ -99,35 +92,35 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
             }
         });
 
-        jButtonBorrarTablaGrupo.setText("Borrar Tabla Grupo");
-        jButtonBorrarTablaGrupo.setEnabled(false);
-        jButtonBorrarTablaGrupo.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBorrarTablaAlbum.setText("Borrar Tabla Album");
+        jButtonBorrarTablaAlbum.setEnabled(false);
+        jButtonBorrarTablaAlbum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBorrarTablaGrupoActionPerformed(evt);
+                jButtonBorrarTablaAlbumActionPerformed(evt);
             }
         });
 
-        jButtonCrearTablaGrupo.setText("Crear Tabla Grupo");
-        jButtonCrearTablaGrupo.setEnabled(false);
-        jButtonCrearTablaGrupo.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCrearTablaAlbum.setText("Crear Tabla Album");
+        jButtonCrearTablaAlbum.setEnabled(false);
+        jButtonCrearTablaAlbum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCrearTablaGrupoActionPerformed(evt);
+                jButtonCrearTablaAlbumActionPerformed(evt);
             }
         });
 
-        jButtonAddColumnaTablaGrupo.setText("Añadir Año a Grupo");
-        jButtonAddColumnaTablaGrupo.setEnabled(false);
-        jButtonAddColumnaTablaGrupo.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAddColumnaTablaAlbum.setText("Añadir Atributo a Album");
+        jButtonAddColumnaTablaAlbum.setEnabled(false);
+        jButtonAddColumnaTablaAlbum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddColumnaTablaGrupoActionPerformed(evt);
+                jButtonAddColumnaTablaAlbumActionPerformed(evt);
             }
         });
 
-        jButtonInsertarCancion.setText("Insertar Cancion");
-        jButtonInsertarCancion.setEnabled(false);
-        jButtonInsertarCancion.addActionListener(new java.awt.event.ActionListener() {
+        jButtonInsertarAlbum.setText("Insertar Album");
+        jButtonInsertarAlbum.setEnabled(false);
+        jButtonInsertarAlbum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonInsertarCancionActionPerformed(evt);
+                jButtonInsertarAlbumActionPerformed(evt);
             }
         });
 
@@ -143,126 +136,115 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AlbumLayout.createSequentialGroup()
-                        .addComponent(jButtonConectar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonDesconectar)
-                        .addGap(0, 177, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AlbumLayout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonAddColumnaTablaGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonCrearTablaGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonBorrarTablaGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(AlbumLayout.createSequentialGroup()
+                        .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonAddColumnaTablaAlbum)
+                            .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTextFieldIdAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(AlbumLayout.createSequentialGroup()
+                                    .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(AlbumLayout.createSequentialGroup()
+                                            .addGap(14, 14, 14)
+                                            .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jTextFieldNombreAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jTextFieldLider, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AlbumLayout.createSequentialGroup()
+                                            .addGap(14, 14, 14)
+                                            .addComponent(jTextFieldDiscografica, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jButtonInsertarAlbum)))
+                        .addGap(54, 54, 54))
+                    .addGroup(AlbumLayout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(jButtonDesconectar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonBorrarTablaAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonInsertarCancion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldIdCancion)
-                            .addComponent(jTextFieldNombreCancion)
-                            .addComponent(jTextFieldDuracion, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldFechaLanzamieto))))
-                .addGap(18, 18, 18))
+                        .addComponent(jButtonCrearTablaAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         AlbumLayout.setVerticalGroup(
             AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AlbumLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonConectar)
                     .addComponent(jButtonDesconectar)
-                    .addComponent(jButtonBorrarTablaGrupo))
+                    .addComponent(jButtonBorrarTablaAlbum)
+                    .addComponent(jButtonCrearTablaAlbum))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonCrearTablaGrupo)
-                    .addComponent(jLabelInfo))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabelInfo)
+                    .addComponent(jButtonAddColumnaTablaAlbum))
                 .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AlbumLayout.createSequentialGroup()
-                        .addComponent(jButtonAddColumnaTablaGrupo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
-                        .addComponent(jButtonInsertarCancion)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1))
+                    .addGroup(AlbumLayout.createSequentialGroup()
+                        .addGap(5, 259, Short.MAX_VALUE)
+                        .addComponent(jButtonInsertarAlbum)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldIdCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldIdAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldNombreCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldNombreAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldDiscografica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldFechaLanzamieto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
-                    .addComponent(jScrollPane1))
+                            .addComponent(jTextFieldLider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))))
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("tab1", Album);
+        jTabbedPane1.addTab("Album", Album);
 
-        jButtonDesconectar1.setText("Desconectar");
-        jButtonDesconectar1.setEnabled(false);
-        jButtonDesconectar1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBorrarTablaCancion.setText("Borrar Tabla Cancion");
+        jButtonBorrarTablaCancion.setEnabled(false);
+        jButtonBorrarTablaCancion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonDesconectar1ActionPerformed(evt);
+                jButtonBorrarTablaCancionActionPerformed(evt);
             }
         });
 
-        jButtonBorrarTablaGrupo1.setText("AAAAAAAA");
-        jButtonBorrarTablaGrupo1.setEnabled(false);
-        jButtonBorrarTablaGrupo1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCrearTablaCancion.setText("Crear Tabla Cancion");
+        jButtonCrearTablaCancion.setEnabled(false);
+        jButtonCrearTablaCancion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBorrarTablaGrupo1ActionPerformed(evt);
+                jButtonCrearTablaCancionActionPerformed(evt);
             }
         });
 
-        jButtonCrearTablaGrupo1.setText("Crear Tabla Grupo");
-        jButtonCrearTablaGrupo1.setEnabled(false);
-        jButtonCrearTablaGrupo1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAddColumnaTablaCancion.setText("Añadir a Cancion");
+        jButtonAddColumnaTablaCancion.setEnabled(false);
+        jButtonAddColumnaTablaCancion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCrearTablaGrupo1ActionPerformed(evt);
+                jButtonAddColumnaTablaCancionActionPerformed(evt);
             }
         });
 
-        jButtonAddColumnaTablaGrupo1.setText("Añadir Año a Grupo");
-        jButtonAddColumnaTablaGrupo1.setEnabled(false);
-        jButtonAddColumnaTablaGrupo1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonInsertarCancion.setText("Insertar Cancion");
+        jButtonInsertarCancion.setEnabled(false);
+        jButtonInsertarCancion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddColumnaTablaGrupo1ActionPerformed(evt);
-            }
-        });
-
-        jButtonInsertarCancion1.setText("Insertar Cancion");
-        jButtonInsertarCancion1.setEnabled(false);
-        jButtonInsertarCancion1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonInsertarCancion1ActionPerformed(evt);
+                jButtonInsertarCancionActionPerformed(evt);
             }
         });
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
-
-        jButtonConectar5.setText("Conectar");
-        jButtonConectar5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonConectar5ActionPerformed(evt);
-            }
-        });
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Nombre:");
@@ -279,6 +261,9 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         jLabelInfo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelInfo1.setText("Sin conexión a la BBDD Discográfica.");
 
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Album:");
+
         javax.swing.GroupLayout CancionLayout = new javax.swing.GroupLayout(Cancion);
         Cancion.setLayout(CancionLayout);
         CancionLayout.setHorizontalGroup(
@@ -286,76 +271,74 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CancionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CancionLayout.createSequentialGroup()
-                        .addComponent(jButtonConectar5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonDesconectar1)
-                        .addGap(0, 177, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelInfo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabelInfo1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
                 .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CancionLayout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonAddColumnaTablaGrupo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonCrearTablaGrupo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonBorrarTablaGrupo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jButtonAddColumnaTablaCancion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonCrearTablaCancion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonBorrarTablaCancion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(CancionLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonInsertarCancion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextFieldIdCancion1)
-                            .addComponent(jTextFieldNombreCancion1)
-                            .addComponent(jTextFieldDuracion1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldFechaLanzamieto1))))
+                            .addComponent(jButtonInsertarCancion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldIdCancion)
+                            .addComponent(jTextFieldNombreCancion)
+                            .addComponent(jTextFieldDuracion, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldFechaLanzamieto)
+                            .addComponent(jTextFieldAlbumCancion))))
                 .addGap(18, 18, 18))
         );
         CancionLayout.setVerticalGroup(
             CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CancionLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonConectar5)
-                    .addComponent(jButtonDesconectar1)
-                    .addComponent(jButtonBorrarTablaGrupo1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButtonCrearTablaGrupo1)
+                    .addComponent(jButtonBorrarTablaCancion)
                     .addComponent(jLabelInfo1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonCrearTablaCancion)
                 .addGap(18, 18, 18)
                 .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CancionLayout.createSequentialGroup()
-                        .addComponent(jButtonAddColumnaTablaGrupo1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 218, Short.MAX_VALUE)
-                        .addComponent(jButtonInsertarCancion1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonAddColumnaTablaCancion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                        .addComponent(jButtonInsertarCancion)
+                        .addGap(9, 9, 9)
                         .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldIdCancion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)
+                            .addComponent(jTextFieldAlbumCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldIdCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldNombreCancion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldNombreCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldDuracion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldFechaLanzamieto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextFieldFechaLanzamieto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8)))
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("tab2", Cancion);
+        jTabbedPane1.addTab("Cancion", Cancion);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -371,117 +354,77 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonInsertarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarCancionActionPerformed
+    private void jButtonInsertarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarAlbumActionPerformed
         // TODO add your handling code here:
-        manager.insertarCancion(jTextFieldIdCancion.getText(), jTextFieldNombreCancion.getText(), jTextFieldDuracion.getText(), jTextFieldFechaLanzamieto.getText());
+        manager.insertarAlbum(jTextFieldIdAlbum.getText(), jTextFieldNombreAlbum.getText(), jTextFieldDiscografica.getText(), jTextFieldLider.getText());
         jLabelInfo.setText("Cancion insertada correctamente");
-    }//GEN-LAST:event_jButtonInsertarCancionActionPerformed
+    }//GEN-LAST:event_jButtonInsertarAlbumActionPerformed
 
-    private void jButtonAddColumnaTablaGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddColumnaTablaGrupoActionPerformed
+    private void jButtonAddColumnaTablaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddColumnaTablaAlbumActionPerformed
         // TODO add your handling code here:
         manager.addColumna();
-        jButtonAddColumnaTablaGrupo.setEnabled(false);
+        jButtonAddColumnaTablaAlbum.setEnabled(false);
         jLabelInfo.setText("Atributo anno_creacion añadido a la Tabla Grupo");
-    }//GEN-LAST:event_jButtonAddColumnaTablaGrupoActionPerformed
+    }//GEN-LAST:event_jButtonAddColumnaTablaAlbumActionPerformed
 
-    private void jButtonCrearTablaGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearTablaGrupoActionPerformed
+    private void jButtonCrearTablaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearTablaAlbumActionPerformed
         // TODO add your handling code here:
-        manager.crearTablaGrupo();
-        jButtonAddColumnaTablaGrupo.setEnabled(true);
-        jButtonCrearTablaGrupo.setEnabled(false);
+        manager.crearTablaAlbum();
+        jButtonAddColumnaTablaAlbum.setEnabled(true);
+        jButtonCrearTablaAlbum.setEnabled(false);
         jLabelInfo.setText("La Tabla grupo a sido creada correctamente");
-    }//GEN-LAST:event_jButtonCrearTablaGrupoActionPerformed
+    }//GEN-LAST:event_jButtonCrearTablaAlbumActionPerformed
 
-    private void jButtonBorrarTablaGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTablaGrupoActionPerformed
+    private void jButtonBorrarTablaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTablaAlbumActionPerformed
         // TODO add your handling code here:
-        manager.borrarTablaGrupo();
-        jButtonCrearTablaGrupo.setEnabled(true);
-        jButtonAddColumnaTablaGrupo.setEnabled(false);
+        manager.borrarTablaAlbum();
+        jButtonCrearTablaAlbum.setEnabled(true);
+        jButtonAddColumnaTablaAlbum.setEnabled(false);
         jLabelInfo.setText("La Tabla grupo a sido borrada correctamente");
-    }//GEN-LAST:event_jButtonBorrarTablaGrupoActionPerformed
+    }//GEN-LAST:event_jButtonBorrarTablaAlbumActionPerformed
 
     private void jButtonDesconectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDesconectarActionPerformed
         // TODO add your handling code here:
 
         manager.cerrarConexion();
-        jButtonConectar.setEnabled(true);
         jButtonDesconectar.setEnabled(false);
-        /*
-        if (retorno == 0) {
-            System.out.println("Desconectado de la BBDD");
-        } else {
-            System.out.println("Error en la desconexionF");
-        }*/
         jLabelInfo.setText("Desconectado con exito de Discográfica!");
+        jLabelInfo1.setText("Desconectado con exito de Discográfica!");
     }//GEN-LAST:event_jButtonDesconectarActionPerformed
 
-    private void jButtonConectarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConectarActionPerformed
+    private void jButtonBorrarTablaCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTablaCancionActionPerformed
         // TODO add your handling code here:
-        manager.conection();
-        jButtonConectar.setEnabled(false);
-        jButtonDesconectar.setEnabled(true);
-        jButtonBorrarTablaGrupo.setEnabled(true);
-        jButtonAddColumnaTablaGrupo.setEnabled(true);
-        jButtonDesconectar.setEnabled(true);
-        jButtonInsertarCancion.setEnabled(true);
-        jLabelInfo.setText("Conectado con exito a Discográfica!");
-    }//GEN-LAST:event_jButtonConectarActionPerformed
-
-    private void jButtonDesconectar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDesconectar1ActionPerformed
-        // TODO add your handling code here:
-
-        manager.cerrarConexion();
-        jButtonConectar.setEnabled(true);
-        jButtonDesconectar.setEnabled(false);
-        /*
-        if (retorno == 0) {
-            System.out.println("Desconectado de la BBDD");
-        } else {
-            System.out.println("Error en la desconexionF");
-        }*/
-        jLabelInfo.setText("Desconectado con exito de Discográfica!");
-    }//GEN-LAST:event_jButtonDesconectar1ActionPerformed
-
-    private void jButtonBorrarTablaGrupo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTablaGrupo1ActionPerformed
-        // TODO add your handling code here:
-        manager.borrarTablaGrupo();
-        jButtonCrearTablaGrupo.setEnabled(true);
-        jButtonAddColumnaTablaGrupo.setEnabled(false);
+        manager.borrarTablaAlbum();
+        jButtonCrearTablaAlbum.setEnabled(true);
+        jButtonAddColumnaTablaAlbum.setEnabled(false);
         jLabelInfo.setText("La Tabla grupo a sido borrada correctamente");
-    }//GEN-LAST:event_jButtonBorrarTablaGrupo1ActionPerformed
+        jLabelInfo1.setText("La Tabla grupo a sido creada correctamente");
+    }//GEN-LAST:event_jButtonBorrarTablaCancionActionPerformed
 
-    private void jButtonCrearTablaGrupo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearTablaGrupo1ActionPerformed
+    private void jButtonCrearTablaCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearTablaCancionActionPerformed
         // TODO add your handling code here:
-        manager.crearTablaGrupo();
-        jButtonAddColumnaTablaGrupo.setEnabled(true);
-        jButtonCrearTablaGrupo.setEnabled(false);
+        manager.crearTablaAlbum();
+        jButtonAddColumnaTablaAlbum.setEnabled(true);
+        jButtonCrearTablaAlbum.setEnabled(false);
         jLabelInfo.setText("La Tabla grupo a sido creada correctamente");
-    }//GEN-LAST:event_jButtonCrearTablaGrupo1ActionPerformed
+        jLabelInfo1.setText("La Tabla grupo a sido creada correctamente");
 
-    private void jButtonAddColumnaTablaGrupo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddColumnaTablaGrupo1ActionPerformed
+    }//GEN-LAST:event_jButtonCrearTablaCancionActionPerformed
+
+    private void jButtonAddColumnaTablaCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddColumnaTablaCancionActionPerformed
         // TODO add your handling code here:
         manager.addColumna();
-        jButtonAddColumnaTablaGrupo.setEnabled(false);
+        jButtonAddColumnaTablaAlbum.setEnabled(false);
         jLabelInfo.setText("Atributo anno_creacion añadido a la Tabla Grupo");
-    }//GEN-LAST:event_jButtonAddColumnaTablaGrupo1ActionPerformed
+        jLabelInfo1.setText("Atributo anno_creacion añadido a la Tabla Grupo");
+    }//GEN-LAST:event_jButtonAddColumnaTablaCancionActionPerformed
 
-    private void jButtonInsertarCancion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarCancion1ActionPerformed
+    private void jButtonInsertarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarCancionActionPerformed
         // TODO add your handling code here:
-        manager.insertarCancion(jTextFieldIdCancion.getText(), jTextFieldNombreCancion.getText(), jTextFieldDuracion.getText(), jTextFieldFechaLanzamieto.getText());
+        manager.insertarCancion(jTextFieldIdCancion.getText(), jTextFieldNombreCancion.getText(), jTextFieldDuracion.getText(), jTextFieldFechaLanzamieto.getText(), jTextFieldAlbumCancion.getText());
         jLabelInfo.setText("Cancion insertada correctamente");
-    }//GEN-LAST:event_jButtonInsertarCancion1ActionPerformed
-
-    private void jButtonConectar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConectar5ActionPerformed
-        // TODO add your handling code here:
-        manager.conection();
-        jButtonConectar.setEnabled(false);
-        jButtonDesconectar.setEnabled(true);
-        jButtonBorrarTablaGrupo.setEnabled(true);
-        jButtonAddColumnaTablaGrupo.setEnabled(true);
-        jButtonDesconectar.setEnabled(true);
-        jButtonInsertarCancion.setEnabled(true);
-        jLabelInfo.setText("Conectado con exito a Discográfica!");
-    }//GEN-LAST:event_jButtonConectar5ActionPerformed
+        jLabelInfo1.setText("Cancion insertada correctamente");
+    }//GEN-LAST:event_jButtonInsertarCancionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -521,22 +464,15 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Album;
     private javax.swing.JPanel Cancion;
-    private javax.swing.JButton jButtonAddColumnaTablaGrupo;
-    private javax.swing.JButton jButtonAddColumnaTablaGrupo1;
-    private javax.swing.JButton jButtonBorrarTablaGrupo;
-    private javax.swing.JButton jButtonBorrarTablaGrupo1;
-    private javax.swing.JButton jButtonConectar;
-    private javax.swing.JButton jButtonConectar1;
-    private javax.swing.JButton jButtonConectar2;
-    private javax.swing.JButton jButtonConectar3;
-    private javax.swing.JButton jButtonConectar4;
-    private javax.swing.JButton jButtonConectar5;
-    private javax.swing.JButton jButtonCrearTablaGrupo;
-    private javax.swing.JButton jButtonCrearTablaGrupo1;
+    private javax.swing.JButton jButtonAddColumnaTablaAlbum;
+    private javax.swing.JButton jButtonAddColumnaTablaCancion;
+    private javax.swing.JButton jButtonBorrarTablaAlbum;
+    private javax.swing.JButton jButtonBorrarTablaCancion;
+    private javax.swing.JButton jButtonCrearTablaAlbum;
+    private javax.swing.JButton jButtonCrearTablaCancion;
     private javax.swing.JButton jButtonDesconectar;
-    private javax.swing.JButton jButtonDesconectar1;
+    private javax.swing.JButton jButtonInsertarAlbum;
     private javax.swing.JButton jButtonInsertarCancion;
-    private javax.swing.JButton jButtonInsertarCancion1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -545,6 +481,7 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelInfo;
     private javax.swing.JLabel jLabelInfo1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -552,13 +489,26 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextField jTextFieldAlbumCancion;
+    private javax.swing.JTextField jTextFieldDiscografica;
     private javax.swing.JTextField jTextFieldDuracion;
-    private javax.swing.JTextField jTextFieldDuracion1;
     private javax.swing.JTextField jTextFieldFechaLanzamieto;
-    private javax.swing.JTextField jTextFieldFechaLanzamieto1;
+    private javax.swing.JTextField jTextFieldIdAlbum;
     private javax.swing.JTextField jTextFieldIdCancion;
-    private javax.swing.JTextField jTextFieldIdCancion1;
+    private javax.swing.JTextField jTextFieldLider;
+    private javax.swing.JTextField jTextFieldNombreAlbum;
     private javax.swing.JTextField jTextFieldNombreCancion;
-    private javax.swing.JTextField jTextFieldNombreCancion1;
     // End of variables declaration//GEN-END:variables
+
+    private void conectarseADiscográfica() {
+        manager.conection();
+        jButtonDesconectar.setEnabled(true);
+        jButtonBorrarTablaAlbum.setEnabled(true);
+        jButtonAddColumnaTablaAlbum.setEnabled(true);
+        jButtonDesconectar.setEnabled(true);
+        jButtonInsertarAlbum.setEnabled(true);
+        jButtonInsertarCancion.setEnabled(true);
+        jLabelInfo.setText("Conectado con exito a Discográfica!");
+        jLabelInfo1.setText("Conectado con exito a Discográfica!");
+    }
 }

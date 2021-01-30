@@ -68,6 +68,7 @@ public class PoolConexiones {
         }
     }
 
+    //ALTER TABLE
     public void addColumna() {
         Statement sta;
         try {
@@ -82,7 +83,8 @@ public class PoolConexiones {
 
     }
 
-    public void borrarTablaGrupo() {
+    //DROP TABLE
+    public void borrarTablaAlbum() {
         Statement sta;
         try {
             sta = conexion.createStatement();
@@ -94,16 +96,39 @@ public class PoolConexiones {
         }
     }
 
-    public void crearTablaGrupo() {
+    //CREATE TABLE ALBUM
+    public void crearTablaAlbum() {
         Statement sta;
         try {
             sta = conexion.createStatement();
-            sta.executeUpdate("CREATE TABLE GRUPO(\n"
+            sta.executeUpdate("CREATE TABLE ALBUM(\n"
                     + "    id INT NOT NULL,\n"
-                    + "    Nombre_Grupo varchar(30) DEFAULT NULL,\n"
+                    + "    Nombre_Album varchar(30) DEFAULT NULL,\n"
                     + "    Discografica varchar(30) DEFAULT NULL,\n"
                     + "    Lider varchar(30) DEFAULT NULL,\n"
-                    + "    PRIMARY KEY (id)\n"
+                    + "    PRIMARY KEY (Nombre_Album)\n"
+                    + "    \n"
+                    + ");");
+            sta.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Tabla creada correctamente.");
+        }
+    }
+    //CREATE TABLE CANCION
+
+    public void crearTablaCancion() {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("CREATE TABLE CANCION(\n"
+                    + "    id INT NOT NULL,\n"
+                    + "    Nombre varchar(30) DEFAULT NULL,\n"
+                    + "    Duracion varchar(30) DEFAULT NULL,\n"
+                    + "    Release_Date date DEFAULT NULL,\n"
+                    + "	Album_cancion varchar(30) DEFAULT NULL,\n"
+                    + "    PRIMARY KEY (id),\n"
+                    + "    FOREIGN KEY (Album_cancion) references ALBUM(Nombre_Album)\n"
                     + ");");
             sta.close();
         } catch (SQLException ex) {
@@ -112,11 +137,25 @@ public class PoolConexiones {
         }
     }
 
-    public void insertarCancion(String id, String nombre, String duracion, String fecha_release) {
+    //INSERTAR CANCION
+    public void insertarCancion(String id, String nombre, String duracion, String fecha_release, String nombre_album) {
         Statement sta;
         try {
             sta = conexion.createStatement();
-            sta.executeUpdate("INSERT INTO cancion VALUE('" + id + "', '" + nombre + "', '" + duracion + "', '" + fecha_release + "');");
+            sta.executeUpdate("INSERT INTO cancion VALUE('" + id + "', '" + nombre + "', '" + duracion + "', '" + fecha_release + "', '" + nombre_album + "');");
+            sta.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Cancion insertada correctamente.");
+        }
+    }
+    //INSERTAR CANCION
+
+    public void insertarAlbum(String id, String nombre, String discografica, String lider) {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("INSERT INTO album VALUE('" + id + "', '" + nombre + "', '" + discografica + "', '" + lider + "');");
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
