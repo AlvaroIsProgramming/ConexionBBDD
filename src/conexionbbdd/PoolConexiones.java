@@ -7,10 +7,9 @@ package conexionbbdd;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 /**
@@ -69,12 +68,12 @@ public class PoolConexiones {
     }
 
     //ALTER TABLE
-    public void addColumna() {
+    public void cambiarDato() {
         Statement sta;
         try {
             sta = conexion.createStatement();
             //executeUpdate para todo lo que no te devuelva info de la BBDD
-            sta.executeUpdate("ALTER TABLE grupo ADD anno_creacion YEAR;");
+            sta.executeUpdate("ALTER TABLE album ADD anno_creacion YEAR;");
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
@@ -83,16 +82,29 @@ public class PoolConexiones {
 
     }
 
-    //DROP TABLE
+    //DROP TABLE ALBUM
     public void borrarTablaAlbum() {
         Statement sta;
         try {
             sta = conexion.createStatement();
-            sta.executeUpdate("DROP table grupo;");
+            sta.executeUpdate("DROP table album;");
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
-            System.out.println("Tabla borrada correctamente.");
+            System.out.println(" error al borrar la tabla album.");
+        }
+    }
+    
+     //DROP TABLE CANCION
+    public void borrarTablaCancion() {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("DROP table cancion;");
+            sta.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println(" error al borrar la tabla album.");
         }
     }
 
@@ -112,7 +124,7 @@ public class PoolConexiones {
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
-            System.out.println("Tabla creada correctamente.");
+            System.out.println("Error al crear tabla Album.");
         }
     }
     //CREATE TABLE CANCION
@@ -133,8 +145,21 @@ public class PoolConexiones {
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
-            System.out.println("Tabla creada correctamente.");
+            System.out.println("Error al crear tabla canción.");
         }
+    }
+
+    //MOSTRAR TABLAS
+    public ResultSet mostrarTabla(String query) {
+        Statement sta;
+        ResultSet datos = null;
+        try {
+            sta = conexion.createStatement();
+            datos = sta.executeQuery(query);
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+        return datos;
     }
 
     //INSERTAR CANCION
@@ -146,11 +171,11 @@ public class PoolConexiones {
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
-            System.out.println("Cancion insertada correctamente.");
+            System.out.println("Error al insertar Cancion");
         }
     }
-    //INSERTAR CANCION
 
+    //INSERTAR CANCION
     public void insertarAlbum(String id, String nombre, String discografica, String lider) {
         Statement sta;
         try {
@@ -159,7 +184,33 @@ public class PoolConexiones {
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
-            System.out.println("Cancion insertada correctamente.");
+            System.out.println("Error al insertar album.");
+        }
+    }
+
+    //ELIMINAR CANCION
+    public void eliminarCancion(String cancion) {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("");
+            sta.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error al eliminar canción.");
+        }
+    }
+
+    //ELIMINAR ALBUM
+    public void eliminarAlbum(String album) {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("");
+            sta.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.toString());
+            System.out.println("Error al eliminar Album.");
         }
     }
 }
