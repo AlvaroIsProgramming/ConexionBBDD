@@ -94,8 +94,8 @@ public class PoolConexiones {
             System.out.println(" error al borrar la tabla album.");
         }
     }
-    
-     //DROP TABLE CANCION
+
+    //DROP TABLE CANCION
     public void borrarTablaCancion() {
         Statement sta;
         try {
@@ -114,10 +114,10 @@ public class PoolConexiones {
         try {
             sta = conexion.createStatement();
             sta.executeUpdate("CREATE TABLE ALBUM(\n"
-                    + "    id INT NOT NULL,\n"
-                    + "    Nombre_Album varchar(30) DEFAULT NULL,\n"
+                    + "    Nombre_Album varchar(60) DEFAULT NULL,\n"
                     + "    Discografica varchar(30) DEFAULT NULL,\n"
                     + "    Lider varchar(30) DEFAULT NULL,\n"
+                    + "    Genero varchar(40) DEFAULT NULL,\n"
                     + "    PRIMARY KEY (Nombre_Album)\n"
                     + "    \n"
                     + ");");
@@ -134,12 +134,11 @@ public class PoolConexiones {
         try {
             sta = conexion.createStatement();
             sta.executeUpdate("CREATE TABLE CANCION(\n"
-                    + "    id INT NOT NULL,\n"
                     + "    Nombre varchar(30) DEFAULT NULL,\n"
                     + "    Duracion varchar(30) DEFAULT NULL,\n"
-                    + "    Release_Date date DEFAULT NULL,\n"
-                    + "	Album_cancion varchar(30) DEFAULT NULL,\n"
-                    + "    PRIMARY KEY (id),\n"
+                    + "    Release_Year varchar(5) DEFAULT NULL,\n"
+                    + "	Album_cancion varchar(60) DEFAULT NULL,\n"
+                    + "    PRIMARY KEY (Nombre),\n"
                     + "    FOREIGN KEY (Album_cancion) references ALBUM(Nombre_Album)\n"
                     + ");");
             sta.close();
@@ -163,11 +162,18 @@ public class PoolConexiones {
     }
 
     //INSERTAR CANCION
-    public void insertarCancion(String id, String nombre, String duracion, String fecha_release, String nombre_album) {
+    public void insertarCancion(String nombre, String duracion, String id_Album) {
         Statement sta;
+        int aux = 0;
+        String puesto="";
+        while (puesto.charAt(aux) != '-') {
+            puesto = puesto + puesto.charAt(aux);
+            aux++;
+        }
         try {
             sta = conexion.createStatement();
-            sta.executeUpdate("INSERT INTO cancion VALUE('" + id + "', '" + nombre + "', '" + duracion + "', '" + fecha_release + "', '" + nombre_album + "');");
+            sta.executeUpdate("INSERT INTO cancion(id_cancion, Nombre, Duracion, id_Album)"
+                    + " VALUES(" + aux + ", '" + nombre + "', '" + duracion + "', '" + id_Album + "');");
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
@@ -175,12 +181,12 @@ public class PoolConexiones {
         }
     }
 
-    //INSERTAR CANCION
-    public void insertarAlbum(String id, String nombre, String discografica, String lider) {
+    //INSERTAR ALBUM
+    public void insertarAlbum(String nombre, String discografica, String lider, String genero) {
         Statement sta;
         try {
             sta = conexion.createStatement();
-            sta.executeUpdate("INSERT INTO album VALUE('" + id + "', '" + nombre + "', '" + discografica + "', '" + lider + "');");
+            sta.executeUpdate("INSERT INTO album VALUE('" + nombre + "', '" + discografica + "', '" + lider + "', '" + genero + "');");
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
@@ -213,4 +219,31 @@ public class PoolConexiones {
             System.out.println("Error al eliminar Album.");
         }
     }
+
+    //EDITAR DATOS DE LA BBDD
+    //ALBUM
+    public void editarAlbum(String nombreas, String discografica, String lider, String genero) {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("");
+        } catch (Exception ex) {
+            System.out.println("ERROR: " + ex.toString());
+        }
+
+    }
+
+    //CANCION
+    public void editarCancion(String id, String nombre, String duracion) {
+        Statement sta;
+        try {
+            sta = conexion.createStatement();
+            sta.executeUpdate("UPDATE cancion SET Nombre = '" + nombre + "', Duracion = '" + duracion
+                    + "' WHERE id_cancion = " + id + ";");
+        } catch (Exception ex) {
+            System.out.println("ERROR: " + ex.toString());
+        }
+
+    }
+
 }
