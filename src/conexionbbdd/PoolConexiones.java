@@ -246,4 +246,17 @@ public class PoolConexiones {
 
     }
 
+    //PARA HACER BUSQUEDAS POR EL USUARIO
+    public void buscarAlbum(String album) {
+        Statement sta;
+        ResultSet datos = null;
+        try {
+            sta = conexion.createStatement();
+            datos = sta.executeQuery("SELECT album.* from album WHERE id=" + album);
+            System.out.println(sta);
+        } catch (Exception ex) {
+            System.out.println("ERROR: " + ex.toString());
+        }
+    }
+
 }

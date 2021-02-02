@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author aghsk
  */
 public class VentanaAlbumCancion extends javax.swing.JFrame {
-
+    
     PoolConexiones manager = new PoolConexiones();
 
     /**
@@ -32,7 +32,7 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         mostrarTablaCanciones();
         ///
         editar();
-
+        
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -61,7 +61,6 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabelInfo = new javax.swing.JLabel();
         jButtonBorrarTablaAlbum = new javax.swing.JButton();
-        jButtonCrearTablaAlbum = new javax.swing.JButton();
         jButtonInsertarAlbum = new javax.swing.JButton();
         jTextFieldEliminarAlbum = new javax.swing.JTextField();
         jButtonEliminarAlbumIndividual = new javax.swing.JButton();
@@ -74,7 +73,6 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         Cancion = new javax.swing.JPanel();
         jButtonBorrarTablaCancion = new javax.swing.JButton();
-        jButtonCrearTablaCancion = new javax.swing.JButton();
         jButtonInsertarCancion = new javax.swing.JButton();
         jTextFieldNombreCancion = new javax.swing.JTextField();
         jTextFieldDuracion = new javax.swing.JTextField();
@@ -91,6 +89,8 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         jButtonEditarCancion = new javax.swing.JButton();
         jTextFieldIdAlbumParaCancion = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jTextFieldBusquedaAlbum = new javax.swing.JTextField();
+        jButtonBuscarAlbum = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,14 +111,6 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         jButtonBorrarTablaAlbum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBorrarTablaAlbumActionPerformed(evt);
-            }
-        });
-
-        jButtonCrearTablaAlbum.setText("Crear Tabla Album");
-        jButtonCrearTablaAlbum.setEnabled(false);
-        jButtonCrearTablaAlbum.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCrearTablaAlbumActionPerformed(evt);
             }
         });
 
@@ -169,39 +161,16 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
             .addGroup(AlbumLayout.createSequentialGroup()
                 .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AlbumLayout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jTextFieldEliminarAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonEliminarAlbumIndividual))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldIdAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(AlbumLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonInsertarAlbum)
-                            .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(AlbumLayout.createSequentialGroup()
-                                    .addComponent(jLabelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jButtonCrearTablaAlbum)
-                                    .addGap(30, 30, 30)
-                                    .addComponent(jButtonBorrarTablaAlbum))
-                                .addGroup(AlbumLayout.createSequentialGroup()
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextFieldNombreAlbum)
-                                    .addGap(152, 152, 152)
-                                    .addComponent(jTextFieldGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(91, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AlbumLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButtonCambiarAlbum)
-                .addGap(70, 70, 70))
-            .addGroup(AlbumLayout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldIdAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonInsertarAlbum)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonCambiarAlbum)))
                 .addGap(18, 18, 18)
                 .addComponent(jTextFieldLider, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -214,6 +183,26 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextFieldDiscografica)
                         .addGap(8, 8, 8))))
+            .addGroup(AlbumLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(AlbumLayout.createSequentialGroup()
+                            .addComponent(jLabelInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(161, 161, 161)
+                            .addComponent(jButtonBorrarTablaAlbum))
+                        .addGroup(AlbumLayout.createSequentialGroup()
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jTextFieldNombreAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(90, 90, 90)
+                            .addComponent(jTextFieldGenero, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)))
+                    .addGroup(AlbumLayout.createSequentialGroup()
+                        .addComponent(jTextFieldEliminarAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonEliminarAlbumIndividual)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         AlbumLayout.setVerticalGroup(
             AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,20 +210,18 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelInfo, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonCrearTablaAlbum)
-                        .addComponent(jButtonBorrarTablaAlbum)))
+                    .addComponent(jButtonBorrarTablaAlbum, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldEliminarAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEliminarAlbumIndividual))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addComponent(jButtonCambiarAlbum)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonInsertarAlbum)
-                .addGap(42, 42, 42)
+                    .addComponent(jButtonEliminarAlbumIndividual)
+                    .addComponent(jTextFieldEliminarAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
+                .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonInsertarAlbum)
+                    .addComponent(jButtonCambiarAlbum))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(AlbumLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTextFieldLider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,14 +245,6 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         jButtonBorrarTablaCancion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBorrarTablaCancionActionPerformed(evt);
-            }
-        });
-
-        jButtonCrearTablaCancion.setText("Crear Tabla Cancion");
-        jButtonCrearTablaCancion.setEnabled(false);
-        jButtonCrearTablaCancion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonCrearTablaCancionActionPerformed(evt);
             }
         });
 
@@ -326,6 +305,13 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("   Id_Album:");
 
+        jButtonBuscarAlbum.setText("Buscar Album");
+        jButtonBuscarAlbum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarAlbumActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout CancionLayout = new javax.swing.GroupLayout(Cancion);
         Cancion.setLayout(CancionLayout);
         CancionLayout.setHorizontalGroup(
@@ -333,26 +319,15 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
             .addGroup(CancionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(CancionLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jTextFieldEliminarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonEliminarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CancionLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButtonActualizarTablas, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jButtonCrearTablaCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(169, 169, 169)
                         .addComponent(jButtonBorrarTablaCancion)
                         .addGap(30, 30, 30))
                     .addGroup(CancionLayout.createSequentialGroup()
                         .addComponent(jLabelInfo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(350, 350, 350))
-                    .addGroup(CancionLayout.createSequentialGroup()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(88, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CancionLayout.createSequentialGroup()
                         .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(CancionLayout.createSequentialGroup()
@@ -375,14 +350,25 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
                         .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonInsertarCancion, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButtonEditarCancion, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(65, 65, 65))))
+                        .addGap(65, 65, 65))
+                    .addGroup(CancionLayout.createSequentialGroup()
+                        .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(CancionLayout.createSequentialGroup()
+                                .addComponent(jTextFieldEliminarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonEliminarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(91, 91, 91)
+                                .addComponent(jTextFieldBusquedaAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)
+                                .addComponent(jButtonBuscarAlbum))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 753, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(74, Short.MAX_VALUE))))
         );
         CancionLayout.setVerticalGroup(
             CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(CancionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonCrearTablaCancion)
                     .addComponent(jButtonActualizarTablas)
                     .addComponent(jButtonBorrarTablaCancion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
@@ -392,7 +378,9 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldEliminarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEliminarCancion))
+                    .addComponent(jButtonEliminarCancion)
+                    .addComponent(jTextFieldBusquedaAlbum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonBuscarAlbum))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -436,19 +424,10 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         jLabelInfo1.setText("Cancion insertada correctamente");
     }//GEN-LAST:event_jButtonInsertarCancionActionPerformed
 
-    private void jButtonCrearTablaCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearTablaCancionActionPerformed
-        // CREAR TABLA CANCION
-        manager.crearTablaCancion();
-        jButtonCrearTablaCancion.setEnabled(false);
-        jLabelInfo.setText("La Tabla cancion a sido creada correctamente");
-        jLabelInfo1.setText("La Tabla cancion a sido creada correctamente");
-    }//GEN-LAST:event_jButtonCrearTablaCancionActionPerformed
-
     private void jButtonBorrarTablaCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTablaCancionActionPerformed
         // BORRAR TABLA CANCION
         manager.borrarTablaCancion();
         jButtonBorrarTablaCancion.setEnabled(false);
-        jButtonCrearTablaCancion.setEnabled(true);
         jLabelInfo.setText("La Tabla cancion a sido borrada correctamente");
         jLabelInfo1.setText("La Tabla cancion a sido creada correctamente");
     }//GEN-LAST:event_jButtonBorrarTablaCancionActionPerformed
@@ -466,18 +445,9 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         jLabelInfo1.setText("Album insertado correctamente");
     }//GEN-LAST:event_jButtonInsertarAlbumActionPerformed
 
-    private void jButtonCrearTablaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCrearTablaAlbumActionPerformed
-        // CREAR LA TABLA ALBUM
-        manager.crearTablaAlbum();
-        jButtonCrearTablaAlbum.setEnabled(false);
-        jLabelInfo.setText("La Tabla album a sido creada correctamente");
-        jLabelInfo1.setText("La Tabla album a sido creada correctamente");
-    }//GEN-LAST:event_jButtonCrearTablaAlbumActionPerformed
-
     private void jButtonBorrarTablaAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTablaAlbumActionPerformed
         // BORRAR LA TABLA ALBUM
         manager.borrarTablaAlbum();
-        jButtonCrearTablaAlbum.setEnabled(true);
         jLabelInfo.setText("La Tabla album a sido borrada correctamente");
         jLabelInfo1.setText("La Tabla album a sido borrada correctamente");
     }//GEN-LAST:event_jButtonBorrarTablaAlbumActionPerformed
@@ -529,6 +499,11 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCambiarAlbumActionPerformed
 
+    private void jButtonBuscarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarAlbumActionPerformed
+        // PARA BUSCAR ALBUM
+        manager.buscarAlbum(jTextFieldBusquedaAlbum.getText());
+    }//GEN-LAST:event_jButtonBuscarAlbumActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -570,9 +545,8 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
     private javax.swing.JButton jButtonActualizarTablas;
     private javax.swing.JButton jButtonBorrarTablaAlbum;
     private javax.swing.JButton jButtonBorrarTablaCancion;
+    private javax.swing.JButton jButtonBuscarAlbum;
     private javax.swing.JButton jButtonCambiarAlbum;
-    private javax.swing.JButton jButtonCrearTablaAlbum;
-    private javax.swing.JButton jButtonCrearTablaCancion;
     private javax.swing.JButton jButtonEditarCancion;
     private javax.swing.JButton jButtonEliminarAlbumIndividual;
     private javax.swing.JButton jButtonEliminarCancion;
@@ -594,6 +568,7 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTableAlbum;
     private javax.swing.JTable jTableCancion;
+    private javax.swing.JTextField jTextFieldBusquedaAlbum;
     private javax.swing.JTextField jTextFieldDiscografica;
     private javax.swing.JTextField jTextFieldDuracion;
     private javax.swing.JTextField jTextFieldEliminarAlbum;
@@ -630,20 +605,20 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         DefaultTableModel modelo = new DefaultTableModel();
         //AQUI SE INSERTA LA CONSULTA QUE VA EN POOLCONEXIONES
         ResultSet rs = (ResultSet) manager.mostrarTabla("SELECT * FROM album ORDER BY id");
-
+        
         try {
             //COGEMOS LOS NOMBRES DE LA COLUMNAS
             ResultSetMetaData metaDatos = rs.getMetaData();
-
+            
             int numeroColumnas = metaDatos.getColumnCount();
-
+            
             String[] etiquetas = new String[numeroColumnas];
-
+            
             for (int i = 0; i < numeroColumnas; i++) {
                 etiquetas[i] = metaDatos.getColumnLabel(i + 1);
                 modelo.setColumnIdentifiers(etiquetas);
             }
-
+            
             while (rs.next()) {
                 //COGEMOS LOS DATOS DE LAS FILAS
                 modelo.addRow(new Object[]{rs.getString("id"), rs.getString("Nombre_Album"),
@@ -655,9 +630,9 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         } catch (Exception ex) {
             System.out.println(ex.toString());
         }
-
+        
     }
-
+    
     private void mostrarTablaCanciones() {
         //Ponemos el model a la tabla
         DefaultTableModel modelo = new DefaultTableModel();
@@ -669,7 +644,7 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
 
             //Obtenemos los nombres de las columnas
             ResultSetMetaData metaDatos = rs.getMetaData();
-
+            
             int numeroColumnas = metaDatos.getColumnCount();
             // Se crea un array de etiquetas para rellenar
             String[] etiquetas = new String[numeroColumnas];
@@ -690,9 +665,9 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         } catch (Exception ex) {
             System.out.println(ex.toString());
         }
-
+        
     }
-
+    
     private void editar() {
 
         //Para que aparezcan en los TextFields los datos de la fila seleccionada.
@@ -732,6 +707,6 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
                 }
             }
         });
-
+        
     }
 }
