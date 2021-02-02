@@ -164,17 +164,14 @@ public class PoolConexiones {
     //INSERTAR CANCION
     public void insertarCancion(String nombre, String duracion, String id_Album) {
         Statement sta;
-        int aux = 0;
-        String puesto="";
-        while (puesto.charAt(aux) != '-') {
-            puesto = puesto + puesto.charAt(aux);
-            aux++;
-        }
+        int aux = 11;
+        String puesto = "";
         try {
             sta = conexion.createStatement();
             sta.executeUpdate("INSERT INTO cancion(id_cancion, Nombre, Duracion, id_Album)"
                     + " VALUES(" + aux + ", '" + nombre + "', '" + duracion + "', '" + id_Album + "');");
             sta.close();
+
         } catch (SQLException ex) {
             System.out.println(ex.toString());
             System.out.println("Error al insertar Cancion");
@@ -182,11 +179,11 @@ public class PoolConexiones {
     }
 
     //INSERTAR ALBUM
-    public void insertarAlbum(String nombre, String discografica, String lider, String genero) {
+    public void insertarAlbum(String id, String nombre, String discografica, String lider, String genero) {
         Statement sta;
         try {
             sta = conexion.createStatement();
-            sta.executeUpdate("INSERT INTO album VALUE('" + nombre + "', '" + discografica + "', '" + lider + "', '" + genero + "');");
+            sta.executeUpdate("INSERT INTO album VALUE('" + id + "', '" + nombre + "', '" + discografica + "', '" + lider + "', '" + genero + "');");
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
@@ -195,11 +192,11 @@ public class PoolConexiones {
     }
 
     //ELIMINAR CANCION
-    public void eliminarCancion(String cancion) {
+    public void eliminarCancion(String id_cancion) {
         Statement sta;
         try {
             sta = conexion.createStatement();
-            sta.executeUpdate("");
+            sta.executeUpdate("DELETE FROM cancion WHERE id_cancion = " + id_cancion + ";");
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
@@ -208,11 +205,11 @@ public class PoolConexiones {
     }
 
     //ELIMINAR ALBUM
-    public void eliminarAlbum(String album) {
+    public void eliminarAlbum(String id_album) {
         Statement sta;
         try {
             sta = conexion.createStatement();
-            sta.executeUpdate("");
+            sta.executeUpdate("DELETE FROM album WHERE id = " + id_album + ";");
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
@@ -222,11 +219,14 @@ public class PoolConexiones {
 
     //EDITAR DATOS DE LA BBDD
     //ALBUM
-    public void editarAlbum(String nombreas, String discografica, String lider, String genero) {
+    public void editarAlbum(String id_Album, String nombre_Album, String discografica, String lider, String genero) {
         Statement sta;
         try {
             sta = conexion.createStatement();
-            sta.executeUpdate("");
+            sta.executeUpdate("UPDATE album SET Nombre_Album = '" + nombre_Album + "', Discografica = '" + discografica
+                    + "', lider = '" + lider
+                    + "', genero = '" + genero
+                    + "' WHERE id = " + id_Album + ";");
         } catch (Exception ex) {
             System.out.println("ERROR: " + ex.toString());
         }
