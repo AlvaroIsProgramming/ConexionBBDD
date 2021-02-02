@@ -68,30 +68,43 @@ public class PoolConexiones {
     }
 
     //ALTER TABLE
-    public void cambiarDato() {
+    //PARA ALBUM
+    public void crearAtributoAlbum(String atributo) {
         Statement sta;
+        String tipo = "";
+        if (atributo.equals("release_year")) {
+            tipo = "date";
+        } else {
+            tipo = "int";
+            try {
+                sta = conexion.createStatement();
+                //executeUpdate para todo lo que no te devuelva info de la BBDD
+                sta.executeUpdate("ALTER TABLE album ADD " + atributo + " " + tipo + ";");
+                sta.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.toString());
+                System.out.println("Error al crear columna.");
+            }
+        }
+    }
+
+    //PARA CANCION
+    public void crearAtributoCancion(String atributo) {
+        Statement sta;
+        String tipo = "";
+        if (atributo.equals("Year")) {
+            tipo = "date";
+        } else {
+            tipo = "VARCHAR(30)";
+        }
         try {
             sta = conexion.createStatement();
             //executeUpdate para todo lo que no te devuelva info de la BBDD
-            sta.executeUpdate("ALTER TABLE album ADD anno_creacion YEAR;");
+            sta.executeUpdate("ALTER TABLE cancion ADD " + atributo + " " + tipo + ";");
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
             System.out.println("Columna creada correctamente.");
-        }
-
-    }
-
-    //DROP TABLE ALBUM
-    public void borrarTablaAlbum() {
-        Statement sta;
-        try {
-            sta = conexion.createStatement();
-            sta.executeUpdate("DROP table album;");
-            sta.close();
-        } catch (SQLException ex) {
-            System.out.println(ex.toString());
-            System.out.println(" error al borrar la tabla album.");
         }
     }
 
@@ -108,43 +121,23 @@ public class PoolConexiones {
         }
     }
 
-    //CREATE TABLE ALBUM
-    public void crearTablaAlbum() {
+    //CREATE TABLE GRUPO
+    public void crearTablaGrupo() {
         Statement sta;
         try {
             sta = conexion.createStatement();
-            sta.executeUpdate("CREATE TABLE ALBUM(\n"
-                    + "    Nombre_Album varchar(60) DEFAULT NULL,\n"
-                    + "    Discografica varchar(30) DEFAULT NULL,\n"
-                    + "    Lider varchar(30) DEFAULT NULL,\n"
-                    + "    Genero varchar(40) DEFAULT NULL,\n"
-                    + "    PRIMARY KEY (Nombre_Album)\n"
+            sta.executeUpdate("CREATE TABLE GRUPO(\n"
+                    + "    guitarrista varchar(60) DEFAULT NULL,\n"
+                    + "    bateria varchar(60) DEFAULT NULL,\n"
+                    + "    flauta varchar(60) DEFAULT NULL,\n"
+                    + "    Genero varchar(60) DEFAULT NULL,\n"
+                    + "    PRIMARY KEY (guitarrista)\n"
                     + "    \n"
                     + ");");
             sta.close();
         } catch (SQLException ex) {
             System.out.println(ex.toString());
-            System.out.println("Error al crear tabla Album.");
-        }
-    }
-    //CREATE TABLE CANCION
-
-    public void crearTablaCancion() {
-        Statement sta;
-        try {
-            sta = conexion.createStatement();
-            sta.executeUpdate("CREATE TABLE CANCION(\n"
-                    + "    Nombre varchar(30) DEFAULT NULL,\n"
-                    + "    Duracion varchar(30) DEFAULT NULL,\n"
-                    + "    Release_Year varchar(5) DEFAULT NULL,\n"
-                    + "	Album_cancion varchar(60) DEFAULT NULL,\n"
-                    + "    PRIMARY KEY (Nombre),\n"
-                    + "    FOREIGN KEY (Album_cancion) references ALBUM(Nombre_Album)\n"
-                    + ");");
-            sta.close();
-        } catch (SQLException ex) {
-            System.out.println(ex.toString());
-            System.out.println("Error al crear tabla canción.");
+            System.out.println("Error al crear tabla GRUPO.");
         }
     }
 
@@ -248,6 +241,19 @@ public class PoolConexiones {
 
     //PARA HACER BUSQUEDAS POR EL USUARIO
     public void buscarAlbum(String album) {
+        Statement sta;
+        ResultSet datos = null;
+        try {
+            sta = conexion.createStatement();
+            datos = sta.executeQuery("SELECT album.* from album WHERE id=" + album);
+            System.out.println(sta);
+        } catch (Exception ex) {
+            System.out.println("ERROR: " + ex.toString());
+        }
+    }
+
+    //////
+    public void buscarCancion(String album) {
         Statement sta;
         ResultSet datos = null;
         try {
