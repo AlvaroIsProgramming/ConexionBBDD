@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VentanaAlbumCancion extends javax.swing.JFrame {
 
+    //PARA ACCEDER A LOS METODOS DE POOLCONEXIONES
     PoolConexiones manager = new PoolConexiones();
 
     /**
@@ -29,10 +30,12 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
 
         //MOSTRAR TABLAS
         mostrarTablaAlbum();
-        mostrarTablaCanciones();
-        ///
+        mostrarTablaCancion();
+        //INSERTAR EL METODO EDITAR PARA QUE FUNCIONE EL RELLENAR CAMPOS
+        //AL SELECCIONAR UN DATO DE UNA TABLA
         editar();
-
+        //WINDOWS LISTENER QUE DETECTA CUANDO SE CIERRA LA VENTANA 
+        //SI SE CIERRA TE DESCONECTAS DE LA BBDD
         addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -89,8 +92,6 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         jButtonEditarCancion = new javax.swing.JButton();
         jTextFieldIdAlbumParaCancion = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextFieldBusquedaCancion = new javax.swing.JTextField();
-        jButtonBuscarCancion = new javax.swing.JButton();
         jButtonAlterCancion = new javax.swing.JButton();
         jComboBoxCancion = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
@@ -307,13 +308,6 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("   Id_Album:");
 
-        jButtonBuscarCancion.setText("Buscar por Album");
-        jButtonBuscarCancion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonBuscarCancionActionPerformed(evt);
-            }
-        });
-
         jButtonAlterCancion.setText("Atributo Cancion");
         jButtonAlterCancion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -380,10 +374,7 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
                                 .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jButtonAlterCancion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jButtonEliminarCancion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(91, 91, 91)
-                                .addComponent(jTextFieldBusquedaCancion, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24)
-                                .addComponent(jButtonBuscarCancion)))
+                                .addGap(546, 546, 546)))
                         .addContainerGap(52, Short.MAX_VALUE))))
         );
         CancionLayout.setVerticalGroup(
@@ -400,9 +391,7 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldEliminarCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEliminarCancion)
-                    .addComponent(jTextFieldBusquedaCancion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuscarCancion))
+                    .addComponent(jButtonEliminarCancion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(CancionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAlterCancion)
@@ -445,7 +434,7 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
     private void jButtonInsertarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarCancionActionPerformed
         // INSERTAR CANCION EN LA BBDD
         manager.insertarCancion(jTextFieldNombreCancion.getText(), jTextFieldDuracion.getText(), jTextFieldIdAlbumParaCancion.getText());
-        mostrarTablaCanciones();
+        mostrarTablaCancion();
         jLabelInfo.setText("Cancion insertada correctamente");
         jLabelInfo1.setText("Cancion insertada correctamente");
     }//GEN-LAST:event_jButtonInsertarCancionActionPerformed
@@ -453,6 +442,7 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
     private void jButtonBorrarTablaCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTablaCancionActionPerformed
         // BORRAR TABLA CANCION
         manager.borrarTablaCancion();
+        mostrarTablaCancion();
         jButtonBorrarTablaCancion.setEnabled(false);
         jLabelInfo.setText("La Tabla cancion a sido borrada correctamente");
         jLabelInfo1.setText("La Tabla cancion a sido creada correctamente");
@@ -460,6 +450,7 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
 
     private void jButtonInsertarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarAlbumActionPerformed
         // INSERTAR ALBUM EN LA BBDD
+        mostrarTablaAlbum();
         manager.insertarAlbum(jTextFieldIdAlbum.getText(), jTextFieldNombreAlbum.getText(), jTextFieldDiscografica.getText(), jTextFieldLider.getText(), jTextFieldGenero.getText());
         jLabelInfo.setText("Album insertado correctamente");
         jLabelInfo1.setText("Album insertado correctamente");
@@ -472,7 +463,7 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
             manager.editarCancion((jTableCancion.getValueAt(filaCancion, 0).toString()),
                     jTextFieldNombreCancion.getText(),
                     jTextFieldDuracion.getText());
-            mostrarTablaCanciones();
+            mostrarTablaCancion();
             jLabelInfo.setText("Canción modificada correctamente.");
             jLabelInfo1.setText("Canción modificada correctamente.");
         } catch (Exception ex) {
@@ -484,17 +475,17 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
     private void jButtonEliminarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarCancionActionPerformed
         // PARA ELIMINAR CANCION
         manager.eliminarCancion(jTextFieldEliminarCancion.getText());
-        mostrarTablaCanciones();
+        mostrarTablaCancion();
     }//GEN-LAST:event_jButtonEliminarCancionActionPerformed
 
     private void jButtonEliminarAlbumIndividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarAlbumIndividualActionPerformed
-        //PARA ELIMINAR UN ALBUM
+        // PARA ELIMINAR UN ALBUM
         manager.eliminarAlbum(jTextFieldEliminarAlbum.getText());
         mostrarTablaAlbum();
     }//GEN-LAST:event_jButtonEliminarAlbumIndividualActionPerformed
 
     private void jButtonCambiarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCambiarAlbumActionPerformed
-        //PARA EDITAR DATOS ALBUM
+        // PARA EDITAR DATOS ALBUM
         try {
             int filaAlbum = jTableAlbum.getSelectedRow();
             manager.editarAlbum((jTableAlbum.getValueAt(filaAlbum, 0).toString()),
@@ -502,8 +493,10 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
                     jTextFieldDiscografica.getText(),
                     jTextFieldLider.getText(),
                     jTextFieldGenero.getText());
+            //AQUI ACTUALIZAMOS LAS DOS TABLAS YA QUE AL CAMBIAR
+            //EL NOMBRE DEL ALBUM TAMBIEN SE CAMBIA EN CANCION
             mostrarTablaAlbum();
-            mostrarTablaCanciones();
+            mostrarTablaCancion();
             jLabelInfo.setText("Album modificado correctamente.");
             jLabelInfo1.setText("Album modificado correctamente.");
         } catch (Exception ex) {
@@ -512,25 +505,20 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonCambiarAlbumActionPerformed
 
-    private void jButtonBuscarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarCancionActionPerformed
-        // PARA BUSCAR CANCION
-        manager.buscarCancion(jTextFieldBusquedaCancion.getText());
-    }//GEN-LAST:event_jButtonBuscarCancionActionPerformed
-
     private void jButtonAlterCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterCancionActionPerformed
-        // TODO add your handling code here:
+        // ALTER DE LA TABLA CANCION
         manager.crearAtributoCancion(jComboBoxCancion.getSelectedItem().toString());
     }//GEN-LAST:event_jButtonAlterCancionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // PARA CREAR UNA TABLA GRUPO
+        // PARA CREAR UNA TABLA GRUPO (ALTER)
         manager.crearTablaGrupo();
         jLabelInfo.setText("Tabla grupo creada correctamente");
         jLabelInfo1.setText("Tabla grupo creada correctamente");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonAlterAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterAlbumActionPerformed
-        // TODO add your handling code here:
+        // ALTER DE LA TABLA ALBUM
         manager.crearAtributoAlbum(jComboBoxAlterAlbum.getSelectedItem().toString());
     }//GEN-LAST:event_jButtonAlterAlbumActionPerformed
 
@@ -576,7 +564,6 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
     private javax.swing.JButton jButtonAlterAlbum;
     private javax.swing.JButton jButtonAlterCancion;
     private javax.swing.JButton jButtonBorrarTablaCancion;
-    private javax.swing.JButton jButtonBuscarCancion;
     private javax.swing.JButton jButtonCambiarAlbum;
     private javax.swing.JButton jButtonEditarCancion;
     private javax.swing.JButton jButtonEliminarAlbumIndividual;
@@ -601,7 +588,6 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTableAlbum;
     private javax.swing.JTable jTableCancion;
-    private javax.swing.JTextField jTextFieldBusquedaCancion;
     private javax.swing.JTextField jTextFieldDiscografica;
     private javax.swing.JTextField jTextFieldDuracion;
     private javax.swing.JTextField jTextFieldEliminarAlbum;
@@ -615,15 +601,14 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNombreCancion;
     // End of variables declaration//GEN-END:variables
 
+    //METODOS PRIVADOS A PARTIR DE AQUI
     //PARA CONECTARSE A LA BBDD AL INICIAR LA APP
     private void conectarseADiscográfica() {
         manager.conection();
-        // jButtonAddColumnaTablaAlbum.setEnabled(true);
         jButtonInsertarAlbum.setEnabled(true);
         jButtonInsertarAlbum.setEnabled(true);
         ///
         jButtonBorrarTablaCancion.setEnabled(true);
-        // jButtonAddColumnaTablaCancion.setEnabled(true);
         jButtonInsertarCancion.setEnabled(true);
         jButtonInsertarCancion.setEnabled(true);
         jLabelInfo.setText("Conectado con exito a Discográfica!");
@@ -632,24 +617,20 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
 
     //PARA MOSTRAR LAS TABLAS
     private void mostrarTablaAlbum() {
-        //Se inserta el modelo de la tabla
+        //SE CREA LA TABLA
         DefaultTableModel modelo = new DefaultTableModel();
         //AQUI SE INSERTA LA CONSULTA QUE VA EN POOLCONEXIONES
+        //CONSULTA SIMPLE YA QUE COGEMOS TODOS LOS DATOS
         ResultSet rs = (ResultSet) manager.mostrarTabla("SELECT * FROM album ORDER BY id");
-
         try {
             //COGEMOS LOS NOMBRES DE LA COLUMNAS
             ResultSetMetaData metaDatos = rs.getMetaData();
-
             int numeroColumnas = metaDatos.getColumnCount();
-
             String[] etiquetas = new String[numeroColumnas];
-
             for (int i = 0; i < numeroColumnas; i++) {
                 etiquetas[i] = metaDatos.getColumnLabel(i + 1);
                 modelo.setColumnIdentifiers(etiquetas);
             }
-
             while (rs.next()) {
                 //COGEMOS LOS DATOS DE LAS FILAS
                 modelo.addRow(new Object[]{rs.getString("id"), rs.getString("Nombre_Album"),
@@ -661,36 +642,33 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
         } catch (Exception ex) {
             System.out.println(ex.toString());
         }
-
     }
 
-    private void mostrarTablaCanciones() {
-        //Ponemos el model a la tabla
+    //LO MISMO QUE PARA ALBUM PERO CON CACIONES
+    private void mostrarTablaCancion() {
+        //SE CREA LA TABLA
         DefaultTableModel modelo = new DefaultTableModel();
         try {
-            //Hacemos la consulta
+            //AQUI SE INSERTA LA CONSULTA QUE VA EN POOLCONEXIONES
+            //SE COGE DE album.nombre DE LA TABLA ALBUM CUANDO
+            //EL id_Album DE CANCION Y EL id DE ALBUM SEAN IGUALES
             ResultSet rs = (ResultSet) manager.mostrarTabla("SELECT cancion.*, album.Nombre_Album "
-                    + "FROM cancion, album WHERE cancion.id_Album = album.id "
-                    + "ORDER BY id_cancion;");
-
-            //Obtenemos los nombres de las columnas
+                    + "FROM cancion, album WHERE cancion.id_Album = album.id ORDER BY id_cancion;");
+            //COGEMOS LOS NOMBRES DE LA COLUMNAS
             ResultSetMetaData metaDatos = rs.getMetaData();
-
             int numeroColumnas = metaDatos.getColumnCount();
-            // Se crea un array de etiquetas para rellenar
             String[] etiquetas = new String[numeroColumnas];
-
-            // Se obtiene cada una de las etiquetas para cada columna
+            //COGEMOS LOS DATOS DE LAS FILAS
             for (int i = 0; i < numeroColumnas; i++) {
                 etiquetas[i] = metaDatos.getColumnLabel(i + 1);
                 modelo.setColumnIdentifiers(etiquetas);
             }
             while (rs.next()) {
-                //Obtenemos los datos de las filas
+                //COGEMOS LOS DATOS DE LAS FILAS
                 modelo.addRow(new Object[]{rs.getInt("id_cancion"), rs.getString("Nombre"),
                     rs.getString("Duracion"), rs.getString("id_Album"), rs.getString("album.Nombre_Album")});
             }
-            //Rellenamos la tabla con los datos.
+            //SE INSERTAN LOS DATOS EN LA TABLA
             jTableCancion.setModel(modelo);
             rs.close();
         } catch (Exception ex) {
@@ -699,10 +677,11 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
 
     }
 
+    // METODO PARA QUE SE AUTOCOMPLETEN LOS CAMPOS AL PULSAR UN DATO DE LA TABLA
     private void editar() {
 
-        //Para que aparezcan en los TextFields los datos de la fila seleccionada.
         //EDITAR TABLA ALBUM
+        //SOLO SE EDITA EL NOMBRE, LA DISCOGRAFICA, EL LIDER Y EL GENERO
         jTableAlbum.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -722,22 +701,20 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
             }
         });
         //EDITAR TABLA CANCIONES
+        //SOLO SE EDITA EL NOMBRE Y LA DURACION DE LA CANCION
         jTableCancion.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent ev) {
                 int filaCanciones = jTableCancion.getSelectedRow();
                 if (filaCanciones == -1) {
-                    JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna fila.");
+                    JOptionPane.showMessageDialog(null, "No has seleccionado ninguna fila.");
                 } else {
                     String nombreCancion = (String) jTableCancion.getValueAt(filaCanciones, 1);
                     String duracionCancion = (String) jTableCancion.getValueAt(filaCanciones, 2);
-                    // String albumCancion = (String) jTableCancion.getValueAt(filaCanciones, 4);
                     jTextFieldNombreCancion.setText(nombreCancion);
                     jTextFieldDuracion.setText(duracionCancion);
-                    //  jTextFieldAlbumCanci.setText(albumCancion);
                 }
             }
         });
-
     }
 }
