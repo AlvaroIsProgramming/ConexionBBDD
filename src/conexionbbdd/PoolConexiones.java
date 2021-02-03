@@ -236,7 +236,7 @@ public class PoolConexiones {
         }
 
     }
-
+/*
     //PARA HACER BUSQUEDAS POR EL USUARIO
     public void buscarAlbum(String album) {
         Statement sta;
@@ -248,5 +248,5 @@ public class PoolConexiones {
         } catch (Exception ex) {
             System.out.println("ERROR: " + ex.toString());
         }
-    }
+    }*/
 }
