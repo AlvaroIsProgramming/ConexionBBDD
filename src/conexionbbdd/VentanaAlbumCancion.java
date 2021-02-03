@@ -433,7 +433,7 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
 
     private void jButtonInsertarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarCancionActionPerformed
         // INSERTAR CANCION EN LA BBDD
-        manager.insertarCancion(jTextFieldNombreCancion.getText(), jTextFieldDuracion.getText(), jTextFieldIdAlbumParaCancion.getText());
+        manager.insertarCancion(jTextFieldIdCancion.getText(),jTextFieldNombreCancion.getText(), jTextFieldDuracion.getText(), jTextFieldIdAlbumParaCancion.getText());
         mostrarTablaCancion();
         jLabelInfo.setText("Cancion insertada correctamente");
         jLabelInfo1.setText("Cancion insertada correctamente");
@@ -450,10 +450,10 @@ public class VentanaAlbumCancion extends javax.swing.JFrame {
 
     private void jButtonInsertarAlbumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarAlbumActionPerformed
         // INSERTAR ALBUM EN LA BBDD
-        mostrarTablaAlbum();
         manager.insertarAlbum(jTextFieldIdAlbum.getText(), jTextFieldNombreAlbum.getText(), jTextFieldDiscografica.getText(), jTextFieldLider.getText(), jTextFieldGenero.getText());
         jLabelInfo.setText("Album insertado correctamente");
         jLabelInfo1.setText("Album insertado correctamente");
+        mostrarTablaAlbum();
     }//GEN-LAST:event_jButtonInsertarAlbumActionPerformed
 
     private void jButtonEditarCancionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarCancionActionPerformed

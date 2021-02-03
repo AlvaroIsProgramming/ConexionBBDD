@@ -153,14 +153,14 @@ public class PoolConexiones {
     }
 
     //INSERTAR CANCION
-    public void insertarCancion(String nombre, String duracion, String id_Album) {
+    public void insertarCancion(String id,String nombre, String duracion, String id_Album) {
         Statement sta;
         int aux = 11;
         String puesto = "";
         try {
             sta = conexion.createStatement();
             sta.executeUpdate("INSERT INTO cancion(id_cancion, Nombre, Duracion, id_Album)"
-                    + " VALUES(" + aux + ", '" + nombre + "', '" + duracion + "', '" + id_Album + "');");
+                    + " VALUES(" + id + ", '" + nombre + "', '" + duracion + "', '" + id_Album + "');");
             sta.close();
 
         } catch (SQLException ex) {
